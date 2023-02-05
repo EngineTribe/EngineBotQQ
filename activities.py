@@ -196,7 +196,7 @@ async def command_permission(
         data: CQHTTPRequest,
         arg_string: str
 ) -> CQHTTPQuickReply | None:
-    if data.sender.role not in [CQHTTPMessageSenderRole.admin, CQHTTPMessageSenderRole.owner]:
+    if data.sender.role != CQHTTPMessageSenderRole.owner:
         return reply(
             message=f'❌ {mention(data)} 无权使用该命令。'
         )
@@ -254,10 +254,26 @@ async def command_ban(
             '使用方法: e!ban <用户名|QQ号>',
         )
     else:
-        return await command_permission(
-            data=data,
-            arg_string=f'{arg_string.strip()} banned true'
-        )
+        try:
+            response_json = await api.update_permission(
+                user_identifier=arg_string.strip(),
+                permission='banned',
+                value=True
+            )
+            if 'success' in response_json:
+                return reply(
+                    message=f'✅ {mention(data)} ({response_json["username"]}) 封禁成功。',
+                )
+            else:
+                return reply(
+                    message=f'❌ {mention(data)} 修改权限失败。\n'
+                            f'{response_json["error_type"]} - {response_json["message"]}'
+                )
+        except Exception as e:
+            return reply(
+                message=f'❌ {mention(data)} 修改权限失败，发生未知错误。\n'
+                        f'{str(e)}'
+            )
 
 
 async def command_unban(
@@ -273,10 +289,26 @@ async def command_unban(
             '使用方法: e!unban <用户名|QQ号>',
         )
     else:
-        return await command_permission(
-            data=data,
-            arg_string=f'{arg_string.strip()} banned false'
-        )
+        try:
+            response_json = await api.update_permission(
+                user_identifier=arg_string.strip(),
+                permission='banned',
+                value=False
+            )
+            if 'success' in response_json:
+                return reply(
+                    message=f'✅ {mention(data)} ({response_json["username"]}) 解封成功。',
+                )
+            else:
+                return reply(
+                    message=f'❌ {mention(data)} 修改权限失败。\n'
+                            f'{response_json["error_type"]} - {response_json["message"]}'
+                )
+        except Exception as e:
+            return reply(
+                message=f'❌ {mention(data)} 修改权限失败，发生未知错误。\n'
+                        f'{str(e)}'
+            )
 
 
 async def command_query(
