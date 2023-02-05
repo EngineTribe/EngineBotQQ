@@ -53,18 +53,15 @@ async def cqhttp_event(
                 return {'status': 'failed'}
             commands = {
                 'e!help': activities.command_help,
+                'e!register': activities.command_register,
+                'e!permission': activities.command_permission,
+                'e!ban': activities.command_ban,
+                'e!unban': activities.command_unban,
+                'e!query': activities.command_query,
+                'e!random': activities.command_random,
+                'e!stats': activities.command_stats,
+                'e!server': activities.command_server
             }
-            '''
-                'e!register': command_register,
-                'e!permission': command_permission,
-                'e!report': command_report,
-                'e!query': command_query,
-                'e!ban': command_ban,
-                'e!unban': command_unban,
-                'e!stats': command_stats,
-                'e!random': command_random,
-                'e!server': command_server,
-            '''
             cmdline = get_cmdline(data.message)
             for command in commands:
                 if cmdline.startswith(command):
