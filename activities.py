@@ -227,7 +227,7 @@ async def command_permission(
             )
             if 'success' in response_json:
                 return reply(
-                    message=f'✅ {mention(data)} ({response_json["username"]}) 的权限修改成功。',
+                    message=f'✅ {response_json["username"]} 的权限修改成功。',
                 )
             else:
                 return reply(
