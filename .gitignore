@@ -1,0 +1,8 @@
+config.yml
+config_gocq.yml
+config_gocq.default.yml
+go-cqhttp
+device.json
+logs/
+data/
+session.token

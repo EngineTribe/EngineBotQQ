@@ -1,0 +1,19 @@
+{
+  ".or": [
+    {
+      "message_type": "group",
+      "group_id": {
+        ".in": [
+          723483890
+        ]
+      },
+      ".regex": "e!",
+      "anonymous": {
+        ".eq": null
+      }
+    },
+    {
+      "post_type": "notice"
+    }
+  ]
+}

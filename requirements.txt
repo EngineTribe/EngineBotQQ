@@ -1,0 +1,5 @@
+fastapi
+pydantic
+aiohttp
+uvicorn
+pyyaml
