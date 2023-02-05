@@ -122,8 +122,8 @@ async def command_register(
 
     if not arg_string:
         return reply(
-            '🔗 打开 https://web.enginetribe.gq/user/register 以注册。\n'
-            '打开 https://web.enginetribe.gq/user/change_password 以修改密码。'
+            '🔗 打开 https://www.enginetribe.gq/user/register 以注册。\n'
+            '打开 https://www.enginetribe.gq/user/change_password 以修改密码。'
         )
     else:
         try:
